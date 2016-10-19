@@ -25,7 +25,7 @@ let rec partition smaller equivalent larger pivot a =
             partition smaller (equivalent+1) larger pivot a
           else
             (* move a.(equivalent) to the larger region *)
-            partition smaller equivalent (larger+1) pivot (swap equivalent larger a)
+            partition smaller equivalent (larger-1) pivot (swap equivalent larger a)
       with
         _ -> raise (Invalid_argument "out-of-range")
     end
@@ -38,6 +38,7 @@ let dutch_partition pivot_index a =
   with
     _ -> raise (Invalid_argument "out-of-range")
 
-               
-               
-
+open Printf               
+(* test *)               
+let _ =
+  Array.iter (printf "%d; ") (dutch_partition 3 [|0;1;9;9;9;9;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19|])
